@@ -1,20 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 export default class AddContato extends React.Component {
     constructor(props) {
       super(props);
       this.state = {nome: '',telefone: '',email: ''};
-  
       this.NomeChange = this.NomeChange.bind(this);
       this.TelChange = this.TelChange.bind(this);
       this.EmailChange = this.EmailChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
-  
+    //funções para pegar o valor dentro de cada caixa de texto
     NomeChange(event) {
       this.setState({nome: event.target.value});
     }
+    
     TelChange(event) {
         this.setState({telefone: event.target.value});
       }
@@ -22,9 +21,12 @@ export default class AddContato extends React.Component {
         this.setState({email: event.target.value});
     }
   
-    handleSubmit(event) {
-      
+    //função para o botão de adicionar contato
+    handleSubmit(event){
+       
       console.log('A name was submitted: ' + Object.values(this.state));
+      this.props.parentCallback(this.state);
+      
       event.preventDefault();
     }
   
@@ -35,19 +37,19 @@ export default class AddContato extends React.Component {
           <div class="col-2">
           <label>
             Name:
-            <input type="text" value={this.state.value} onChange={this.NomeChange} />
+            <input type="text" value={this.state.nome} onChange={this.NomeChange} />
           </label>
           </div>
           <div class="col-2">
           <label>
             Telefone:
-            <input type="text"  value={this.state.value} onChange={this.TelChange} />
+            <input type="text"  value={this.state.telefone} onChange={this.TelChange} />
           </label>
           </div>
           <div class="col-2">
           <label>
             Email:
-            <input type="text" value={this.state.value} onChange={this.EmailChange} />
+            <input type="text" value={this.state.email} onChange={this.EmailChange} />
           </label>
           </div>
           <div class="col-2">
@@ -65,9 +67,7 @@ export default class AddContato extends React.Component {
     }
   }
   
-  ReactDOM.render(
-    <AddContato/>,
-    document.getElementById('root')
-  );
+
+
 
 
