@@ -66,8 +66,3 @@ export default class AddContato extends React.Component {
       );
     }
   }
-  
-
-
-
-

@@ -1,5 +1,6 @@
 export class Contato{
-    constructor(nome, telefone,email){
+    constructor(id, nome, telefone,email){
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;

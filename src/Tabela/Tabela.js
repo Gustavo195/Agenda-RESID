@@ -7,23 +7,35 @@ import React from "react";
 //sendo assim, será criado um vetor "contatos" com 3 pushs
 //para inserir os objetos (Contatos) dentro do vetor. 
 let contatos = [];
-contatos.push(new Contato("jairo",123456,"jairo@jairo.jairo"));
-contatos.push(new Contato("jairo2",789456,"jairo2@jairo2.jairo2"));
-contatos.push(new Contato("jairo3",741258,"jairo3@jairo3.jairo3"));
+contatos.push(new Contato(1,"jairo",123456,"jairo@jairo.jairo"));
+contatos.push(new Contato(2,"jairo2",789456,"jairo2@jairo2.jairo2"));
+contatos.push(new Contato(3,"jairo3",741258,"jairo3@jairo3.jairo3"));
 
 
 class Tabela extends React.Component{
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             data: null
         }
+        this.id = 3
     }
 
     addContato(contato){
-        contatos.push(new Contato(contato.nome,contato.telefone,contato.email));
+        contatos.push(new Contato(this.id++, contato.nome,contato.telefone,contato.email));
         console.log(contato);
+    }
+
+    removeContato(id){
+        let index = contatos.findIndex(this.finder,{id: id})
+        contatos.splice(index,1);
+        console.log(contatos);
+        this.forceUpdate()
+    }
+
+    finder(contato) {
+        return contato.id === this.id;
     }
 
     handleCallback = (childData) =>{
@@ -35,15 +47,25 @@ class Tabela extends React.Component{
         //this.forceUpdate()
     }
 
+    removeCallback = (id) =>{
+
+        //this.setState({data: childData});
+        //this.state = childData
+        //console.log(this.state);
+        this.removeContato(id) 
+        //this.forceUpdate()
+    }
+
     render(){
         const {data} = this.state;
         console.log("render")
         return(
             <div>
                 <AddContato parentCallback = {this.handleCallback}/>
+                
                 {console.log(data?("data: " + Object.values(data)):"null")}
                 {data?("data: " + Object.values(data)):"null"}
-                {contatos.map(contato => <Contatos contato = {contato}></Contatos>)} 
+                {contatos.map(item => <Contatos removeCallback = {this.removeCallback} contato = {item}></Contatos>)} 
          </div>
         )
     }
