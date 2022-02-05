@@ -18,19 +18,21 @@ class Tabela extends React.Component{
         super();
         this.state = {
             data: null
-        }
-        this.id = 3
+        };
+        this.id = 4;
+        this.edit = 0;
+
     }
 
+    //método para adicionar os contatos
     addContato(contato){
         contatos.push(new Contato(this.id++, contato.nome,contato.telefone,contato.email));
-        console.log(contato);
     }
 
+    //método para remover os contatos
     removeContato(id){
         let index = contatos.findIndex(this.finder,{id: id})
         contatos.splice(index,1);
-        console.log(contatos);
         this.forceUpdate()
     }
 
@@ -41,31 +43,28 @@ class Tabela extends React.Component{
     handleCallback = (childData) =>{
 
         this.setState({data: childData});
-        //this.state = childData
-        //console.log(this.state);
-        this.addContato(childData) 
-        //this.forceUpdate()
+        this.addContato(childData);
     }
 
+    
     removeCallback = (id) =>{
-
-        //this.setState({data: childData});
-        //this.state = childData
-        //console.log(this.state);
-        this.removeContato(id) 
-        //this.forceUpdate()
+        this.removeContato(id);
     }
-
+    
+    editFilhopai = (id) =>{
+        this.edit = id;
+        console.log(this.edit)
+        this.forceUpdate()
+    }
     render(){
         const {data} = this.state;
-        console.log("render")
+        console.log("pai ID " + this.edit)
         return(
             <div>
                 <AddContato parentCallback = {this.handleCallback}/>
                 
                 {console.log(data?("data: " + Object.values(data)):"null")}
-                {data?("data: " + Object.values(data)):"null"}
-                {contatos.map(item => <Contatos removeCallback = {this.removeCallback} contato = {item}></Contatos>)} 
+                {contatos.map((item,index) => <Contatos editPaifilho = {this.edit} editFilhopai = {this.editFilhopai} removeCallback = {this.removeCallback} contato = {item}></Contatos>)} 
          </div>
         )
     }
