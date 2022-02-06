@@ -37,19 +37,19 @@ export default class AddContato extends React.Component {
           <div class="col-2">
           <label>
             Name:
-            <input type="text" value={this.state.nome} onChange={this.NomeChange} />
+            <input type="text" placeholder="Nome" value={this.state.nome} onChange={this.NomeChange} />
           </label>
           </div>
           <div class="col-2">
           <label>
             Telefone:
-            <input type="text"  value={this.state.telefone} onChange={this.TelChange} />
+            <input type="text" placeholder="Telefone" value={this.state.telefone} onChange={this.TelChange} />
           </label>
           </div>
           <div class="col-2">
           <label>
             Email:
-            <input type="text" value={this.state.email} onChange={this.EmailChange} />
+            <input type="text" placeholder="Email" value={this.state.email} onChange={this.EmailChange} />
           </label>
           </div>
           <div class="col-2">

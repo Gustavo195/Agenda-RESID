@@ -33,7 +33,8 @@ class Tabela extends React.Component{
 
     salvarContato(id,nome,telefone,email){
         let index = contatos.findIndex(this.finder,{id: id})
-        contatos[index] = {nome,telefone,email}
+        console.log(contatos[index])
+        contatos[index] = {id,nome,telefone,email}
         this.edit = 0;
         this.forceUpdate()
     }
