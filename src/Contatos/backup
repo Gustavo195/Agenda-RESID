@@ -1,0 +1,62 @@
+{ this.props.editPaifilho !== this.props.contato.id&& <div class = "row">
+}
+ 
+ 
+ <div class = "col-sm-2" contenteditable="true">
+            <p>{this.props.contato.nome}</p>
+          </div>
+          <div class = "col-sm-2" contenteditable="true">
+            <p>{this.props.contato.telefone}</p>
+          </div>
+          <div class = "col-sm-2" contenteditable="true">
+            <p>{this.props.contato.email}</p>
+          </div>
+          <div class = "col-sm-2">
+
+          </div>
+          {
+            !!this.props.editPaifilho&&<div class = "col-sm-4">
+
+            </div>
+          }
+          { !this.props.editPaifilho&& <div class = "col-sm-2">
+            <button class = "btn btn-primary" onClick={this.onMudar}>Editar</button>
+          
+          </div>}
+
+
+
+
+
+          { this.props.editPaifilho === this.props.contato.id&& <div class = "row">
+            <div class="col-2">
+            <label>
+             
+              <input type="text" style={{ textAlign: 'center' }} placeholder="Nome" value={this.state.nome} onChange={this.NomeChange} />
+            </label>
+            </div>
+            <div class="col-2">
+            <label>
+              
+              <input type="text" style={{ textAlign: 'center' }} placeholder="Telefone" value={this.state.telefone} onChange={this.TelChange} />
+            </label>
+            </div>
+            <div class="col-2">
+            <label>
+              
+              <input type="text" style={{ textAlign: 'center' }} placeholder="Email" value={this.state.email} onChange={this.EmailChange} />
+            </label>
+            </div>
+            <div class = "col-sm-2">
+  
+            </div>
+            <div class = "col-sm-2">
+              <button class = "btn btn-primary" onClick={this.onSalvar}>Salvar</button>
+            
+            </div>
+            <div class = "col-sm-2">
+              <button class = "btn btn-danger" onClick={this.onCancelar}>Cancelar</button>
+            </div>
+            </div>
+        </div>
+            }
