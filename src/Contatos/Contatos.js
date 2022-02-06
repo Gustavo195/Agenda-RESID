@@ -9,7 +9,7 @@ export default class Contatos extends React.Component {
   constructor(props) {
     super(props);
     console.log("this edit "+this.edit)
-    this.state = {nome: '',telefone: '',email: ''};
+    this.state = this.props.contato;
     this.NomeChange = this.NomeChange.bind(this);
     this.TelChange = this.TelChange.bind(this);
     this.EmailChange = this.EmailChange.bind(this);
@@ -35,25 +35,28 @@ export default class Contatos extends React.Component {
     event.preventDefault();
   }
   onMudar(event){
+    
     this.props.editFilhopai(this.props.contato.id);
-    console.log(this.props.contato.id)
+    this.forceUpdate();
     event.preventDefault();
-    this.forceUpdate()
+    
   }
   onCancelar(event){
+    this.setState({nome: this.props.contato.nome })
+    this.setState({telefone: this.props.contato.telefone})
+    this.setState({email: this.props.contato.email})
     this.props.editFilhopai(0);
-    console.log(this.props.contato.id)
+    this.forceUpdate();
     event.preventDefault();
-    this.forceUpdate()
+    
   }
   onSalvar(event){
-       
-    this.props.removeCallback(this.props.contato.id);
     
+    this.props.salvarContato(this.props.contato.id, this.state.nome, this.state.telefone, this.state.email);
+    this.forceUpdate();
     event.preventDefault();
   }
   render() {
-    console.log(this.edit)
       return (
         
         <div >
@@ -109,7 +112,7 @@ export default class Contatos extends React.Component {
 
           </div>
           <div class = "col-sm-2">
-            <button class = "btn btn-primary" on>Salvar</button>
+            <button class = "btn btn-primary" onClick={this.onSalvar}>Salvar</button>
           
           </div>
           <div class = "col-sm-2">

@@ -21,6 +21,7 @@ class Tabela extends React.Component{
         };
         this.id = 4;
         this.edit = 0;
+        this.salvarContato = this.salvarContato.bind(this);
 
     }
 
@@ -29,6 +30,13 @@ class Tabela extends React.Component{
         contatos.push(new Contato(this.id++, contato.nome,contato.telefone,contato.email));
     }
 
+
+    salvarContato(id,nome,telefone,email){
+        let index = contatos.findIndex(this.finder,{id: id})
+        contatos[index] = {nome,telefone,email}
+        this.edit = 0;
+        this.forceUpdate()
+    }
     //método para remover os contatos
     removeContato(id){
         let index = contatos.findIndex(this.finder,{id: id})
@@ -41,7 +49,6 @@ class Tabela extends React.Component{
     }
 
     handleCallback = (childData) =>{
-
         this.setState({data: childData});
         this.addContato(childData);
     }
@@ -49,6 +56,7 @@ class Tabela extends React.Component{
     
     removeCallback = (id) =>{
         this.removeContato(id);
+        
     }
     
     editFilhopai = (id) =>{
@@ -64,7 +72,7 @@ class Tabela extends React.Component{
                 <AddContato parentCallback = {this.handleCallback}/>
                 
                 {console.log(data?("data: " + Object.values(data)):"null")}
-                {contatos.map((item,index) => <Contatos editPaifilho = {this.edit} editFilhopai = {this.editFilhopai} removeCallback = {this.removeCallback} contato = {item}></Contatos>)} 
+                {contatos.map((item) => <Contatos salvarContato = {this.salvarContato} editPaifilho = {this.edit} editFilhopai = {this.editFilhopai} removeCallback = {this.removeCallback} contato = {item}></Contatos>)} 
          </div>
         )
     }
