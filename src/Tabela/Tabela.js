@@ -31,8 +31,8 @@ class Tabela extends React.Component {
   //método para salvar o contato
   salvarContato(id, nome, telefone, email) {
     let index = contatos.findIndex(this.finder, { id: id });
-    console.log(contatos[index]);
     contatos[index] = { id, nome, telefone, email };
+    console.log(contatos[index]);
     this.edit = 0;
     this.forceUpdate();
   }
@@ -61,16 +61,13 @@ class Tabela extends React.Component {
   //do contato a ser editado
   editFilhopai = (id) => {
     this.edit = id;
-    console.log(this.edit);
     this.forceUpdate();
   };
   render() {
     const { data } = this.state;
-    console.log("pai ID " + this.edit);
     return (
       <div>
         <AddContato parentCallback={this.handleCallback} />
-        {console.log(data ? "data: " + Object.values(data) : "null")}
         <div>
           <table class="table table-striped">
             {!!Object.entries(contatos).length > 0 && (
