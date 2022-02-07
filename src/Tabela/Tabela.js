@@ -64,7 +64,6 @@ class Tabela extends React.Component {
     this.forceUpdate();
   };
   render() {
-    const { data } = this.state;
     return (
       <div>
         <AddContato parentCallback={this.handleCallback} />
